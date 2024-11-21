@@ -1,0 +1,53 @@
+
+WITH top_5_skill AS (
+    SELECT 
+        skill_id,
+        COUNT(skill_id) AS skill_count
+
+    FROM skills_job_dim
+
+    GROUP BY skill_id
+    ORDER BY skill_count DESC
+
+    LIMIT 5
+)
+
+SELECT
+    skills_dim.skills AS skill_name,
+    top_5_skill.skill_count
+
+FROM
+    skills_dim
+
+LEFT JOIN top_5_skill ON top_5_skill.skill_id = skills_dim.skill_id
+
+WHERE top_5_skill.skill_count IS NOT NULL
+
+ORDER BY skill_count DESC
+;
+-----------------------------------------CTE
+
+
+
+SELECT skills_dim.skills,
+skill_count
+
+FROM skills_dim
+
+INNER JOIN (
+    SELECT 
+    skill_id,
+    COUNT(skill_id) AS skill_count
+
+    FROM skills_job_dim
+
+    GROUP BY skill_id
+    ORDER BY skill_count DESC
+
+    LIMIT 5) AS skill_count_result ON skills_dim.skill_id = skill_count_result.skill_id
+
+ ORDER BY skill_count DESC
+
+
+;
+-----------------------------------------SUB
