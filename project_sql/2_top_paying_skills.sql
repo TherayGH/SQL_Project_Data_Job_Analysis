@@ -6,10 +6,9 @@ Question: What skills are required for the top paying data analyst jobs?
     helping people looking for jobs understand which skills to develop
 */
 
---Selecting columns/information I would like to see.
-
 
 WITH top_paying_jobs AS (
+    --Selecting columns/information I would like to see.
     SELECT
         job_id,
         job_title,
@@ -47,6 +46,20 @@ INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
 
 ORDER BY salary_year_avg DESC
 /*
+
+Here are the top skills required for the data analyst jobs in the dataset, along with their frequency of mentions:
+
+    SQL: 8 mentions
+    Python: 7 mentions
+    Tableau: 6 mentions
+    R: 4 mentions
+    Snowflake: 3 mentions
+    Pandas: 3 mentions
+    Excel: 3 mentions
+    Azure: 2 mentions
+    Bitbucket: 2 mentions
+    Go: 2 mentions
+
 [
   {
     "job_id": 552322,
